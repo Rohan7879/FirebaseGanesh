@@ -176,6 +176,17 @@
         </button>
         <div id="sync_status" style="text-align: right; margin-bottom: 10px; font-weight: bold">Syncing...</div>
 
+        <!-- NEW: Import Section -->
+        <div class="import-section">
+          <center><h3>Upload Bills from File</h3></center>
+          <p>Select an Excel file (.xlsx) to upload new bills to the database.</p>
+          <div style="display: flex; gap: 10px; align-items: center; margin-top: 15px">
+            <input type="file" id="upload_file_input" accept=".xlsx" style="flex-grow: 1" />
+            <button class="button" style="background-color: #17a2b8" onclick="uploadBills()">Upload from File</button>
+          </div>
+          <p id="upload_status" style="margin-top: 10px; font-weight: bold"></p>
+        </div>
+
         <!-- NEW: Export Section -->
         <div class="export-section">
           <label for="export_format">Export Format:</label>

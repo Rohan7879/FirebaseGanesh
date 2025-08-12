@@ -425,9 +425,8 @@ button[type="submit"] {
   .print-header {
     display: block;
     text-align: center;
-    margin-bottom: 1px;
-    padding-bottom: 1px;
-    border-bottom: 1px solid #ccc;
+    margin-bottom: 0px;
+    border-bottom: none;
     font-size: 6pt;
   }
 
@@ -435,6 +434,22 @@ button[type="submit"] {
     position: absolute;
     top: 10px;
     right: 7.5%;
+    font-size: 20pt;
+    font-weight: bolder;
+    margin: 0;
+  }
+  .bill-no {
+    position: absolute;
+    top: 10px;
+    right: 86%;
+    font-size: 20pt;
+    font-weight: bolder;
+    margin: 0;
+  }
+  .bill-label {
+    position: absolute;
+    top: 10px;
+    right: 88%;
     font-size: 20pt;
     font-weight: bolder;
     margin: 0;
@@ -453,7 +468,7 @@ button[type="submit"] {
 
   .print-only-details {
     display: block !important;
-    margin: 5px 0;
+    margin: auto;
   }
   .detail-line {
     display: flex;
@@ -508,7 +523,7 @@ button[type="submit"] {
   }
 
   .final-bill-table th {
-    padding: 0 10px;
+    padding: 2px 1px;
     font-size: 15pt;
   }
   .final-bill-table td {
@@ -577,16 +592,17 @@ input:checked + .slider:before {
 /* Add this new block to your html.css file */
 .print-mode .print-only-details {
   display: block !important;
-  margin: 5px 0;
+  margin-top: 5px;
 }
 .print-mode .print-header {
   display: block;
   text-align: center;
-  margin-bottom: 1px;
-  padding-bottom: 1px;
-  border-bottom: 1px solid #ccc;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  /* border-bottom: 1px solid #ccc; */
   font-size: 15pt;
 }
+
 .print-mode .detail-line {
   display: flex;
   align-items: center;
@@ -622,7 +638,19 @@ input:checked + .slider:before {
   font-size: 18pt;
   font-weight: bold;
 }
+.bill-meta {
+  border-bottom: 1px solid rgb(193, 198, 207);
+  padding-bottom: 0;
+  margin-bottom: 7px; /* Adjust spacing as needed */
+}
 
+.detail-value-line {
+  font-size: 18pt; /* Increased from 9pt */
+  margin-left: 10px;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 7px; /* Adjust spacing as needed */
+}
 .print-mode .detail-value-line {
   flex-grow: 1;
   border-bottom: 1px solid #000;

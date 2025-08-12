@@ -784,3 +784,92 @@ function checkFirebaseConnection() {
       connectionStatus.className = "disconnected"; // Set a class for red color
     });
 }
+
+// --- NEW: UPLOAD FUNCTIONALITY ---
+
+// Function to handle the file upload
+function uploadBills() {
+  const fileInput = document.getElementById("upload_file_input");
+  const file = fileInput.files[0];
+  const uploadStatus = document.getElementById("upload_status");
+
+  if (!file) {
+    uploadStatus.textContent = "Please select a file to upload.";
+    uploadStatus.style.color = "red";
+    return;
+  }
+
+  uploadStatus.textContent = "Uploading...";
+  uploadStatus.style.color = "orange";
+
+  const reader = new FileReader();
+  reader.onload = function (event) {
+    const data = new Uint8Array(event.target.result);
+    const workbook = XLSX.read(data, { type: "array" });
+    const sheetName = workbook.SheetNames[0];
+    const worksheet = workbook.Sheets[sheetName];
+    const jsonBills = XLSX.utils.sheet_to_json(worksheet);
+
+    if (jsonBills.length === 0) {
+      uploadStatus.textContent = "The selected file is empty or not in the correct format.";
+      uploadStatus.style.color = "red";
+      return;
+    }
+
+    processUploadedBills(jsonBills, uploadStatus);
+  };
+  reader.readAsArrayBuffer(file);
+}
+
+// Function to process and save each bill from the uploaded file
+async function processUploadedBills(bills, statusElement) {
+  let successCount = 0;
+  let errorCount = 0;
+  const lastSerialNo = Number(localStorage.getItem("lastSerialNo")) || 0;
+  let currentSerialNo = lastSerialNo;
+
+  for (const bill of bills) {
+    currentSerialNo++;
+
+    // Remap data from the Excel file columns to the database schema
+    const billData = {
+      "Serial No": currentSerialNo,
+      "Customer Name": bill["Customer Name"] || "",
+      "Vehicle No": bill["Vehicle No"] || "",
+      Village: bill["Village"] || "",
+      Broker: bill["Broker"] || "",
+      "Bill Type": bill["Bill Type"] || "Bag",
+      "Weighbridge Weight": bill["Weighbridge Weight"] || 0,
+      Kasar: bill["Kasar"] || 0,
+      "Bardan Weight": bill["Bardan Weight"] || 0,
+      "Net Weight": bill["Net Weight"] || 0,
+      "Vakal 1 Katta": bill["Vakal 1 Katta"] || 0,
+      "Vakal 1 Kilo": bill["Vakal 1 Kilo"] || 0,
+      "Vakal 1 Bhav": bill["Vakal 1 Bhav"] || 0,
+      "Vakal 1 Amount": bill["Vakal 1 Amount"] || 0,
+      // ... include all other vakals and fields from your schema
+      "Total Amount": bill["Total Amount"] || 0,
+      Utrāī: bill["Utrāī"] || 0,
+      "Final Total": bill["Final Total"] || 0,
+      Expenses: JSON.stringify(bill["Expenses"] || []),
+      Date: bill["Date"] || new Date().toLocaleDateString("en-IN"),
+    };
+
+    try {
+      await billsCollection.add(billData);
+      successCount++;
+    } catch (error) {
+      console.error("Error adding uploaded bill:", bill, error);
+      errorCount++;
+    }
+  }
+
+  // Update last serial number
+  localStorage.setItem("lastSerialNo", currentSerialNo);
+
+  statusElement.textContent = `Upload complete: ${successCount} bills added, ${errorCount} bills failed.`;
+  statusElement.style.color = errorCount === 0 ? "green" : "red";
+
+  // Reload the bill list to show new data
+  showBillListView();
+}
