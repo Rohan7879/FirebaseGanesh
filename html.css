@@ -725,3 +725,46 @@ input:checked + .slider:before {
 .create-new-bill-btn:hover {
   background: #218838;
 }
+
+/* Container for the button and status message */
+.connection-check-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* Style for the Check Connection button */
+.connection-check-button {
+  background-color: #007bff; /* Blue */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.connection-check-button:hover {
+  background-color: #0056b3;
+}
+
+/* Styling for the connection status message */
+#connection_status {
+  font-weight: bold;
+  font-size: 14px;
+  margin: auto;
+}
+
+/* Status colors */
+#connection_status.connected {
+  color: green;
+}
+#connection_status.disconnected {
+  color: red;
+}
+#connection_status.checking {
+  color: orange;
+}

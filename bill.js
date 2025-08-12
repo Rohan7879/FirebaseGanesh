@@ -766,3 +766,21 @@ function formatNumber(num) {
   }
   return Number(num).toLocaleString("en-IN");
 }
+function checkFirebaseConnection() {
+  const connectionStatus = document.getElementById("connection_status");
+  connectionStatus.textContent = "Checking...";
+  connectionStatus.className = "checking"; // Set a class for orange color
+
+  // Force the get() call to check the server directly
+  billsCollection
+    .limit(1)
+    .get({ source: "server" })
+    .then(() => {
+      connectionStatus.textContent = "Connected!";
+      connectionStatus.className = "connected"; // Set a class for green color
+    })
+    .catch(() => {
+      connectionStatus.textContent = "Disconnected.";
+      connectionStatus.className = "disconnected"; // Set a class for red color
+    });
+}
