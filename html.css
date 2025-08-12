@@ -574,19 +574,7 @@ input:focus + .slider {
 input:checked + .slider:before {
   transform: translateX(26px);
 }
-.edit-btn {
-  background-color: #ffc107;
-  color: white;
-  margin-right: 5px;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.bill-meta .meta-item {
-  font-size: 1.5em;
-  font-weight: bold;
-}
+/* Add this new block to your html.css file */
 .print-mode .print-only-details {
   display: block !important;
   margin: 5px 0;
@@ -597,12 +585,14 @@ input:checked + .slider:before {
   margin-bottom: 1px;
   padding-bottom: 1px;
   border-bottom: 1px solid #ccc;
-  font-size: 6pt;
+  font-size: 15pt;
 }
 .print-mode .detail-line {
   display: flex;
   align-items: center;
-  font-size: 9pt;
+  font-weight: bolder;
+  color: #343a40;
+  font-size: 12pt;
 }
 .print-mode .detail-line .detail-label {
   font-weight: bold;
@@ -614,8 +604,8 @@ input:checked + .slider:before {
   flex-grow: 1;
   border-bottom: 1px solid #000;
   height: 1.2em;
-  overflow: hidden;
-  white-space: nowrap;
+  overflow: hidden; /* Prevent text overflow */
+  white-space: nowrap; /* Keep text on one line */
 }
 .print-mode .header {
   display: none;
@@ -629,9 +619,10 @@ input:checked + .slider:before {
   border-bottom: 1px solid #e9ecef;
 }
 .print-mode .bill-meta .meta-item {
-  font-size: 1.5em;
+  font-size: 18pt;
   font-weight: bold;
 }
+
 .print-mode .detail-value-line {
   flex-grow: 1;
   border-bottom: 1px solid #000;
