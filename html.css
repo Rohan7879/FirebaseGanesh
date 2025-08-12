@@ -1,0 +1,633 @@
+/* --- Blue & White Professional Theme --- */
+
+/* General Body and Font Styling */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+    "Helvetica Neue", sans-serif;
+  background-color: #f8f9fa;
+  color: #343a40;
+  margin: 0;
+  padding: 20px;
+}
+
+/* Main Container Card */
+.container {
+  max-width: 850px;
+  margin: 20px auto;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 90, 158, 0.12);
+  border: 1px solid #dee2e6;
+  position: relative;
+  overflow: hidden;
+}
+
+/* --- Watermark Style --- */
+.container::before {
+  content: "";
+  background-image: url("IMG-20250716-WA0121.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 55%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.06;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* This ensures all content stays above the watermark */
+.header,
+.print-header,
+form,
+.details-grid,
+.final-bill-table,
+.totals-grid,
+.button-container,
+.bill-date,
+.print-only-details,
+.print-signature,
+.master-toggle-container,
+.match-status {
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Header with Logo --- */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 15px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.logo {
+  height: 55px;
+  width: auto;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.1));
+}
+
+h1 {
+  color: #005a9e;
+  margin: 0;
+  font-weight: 700;
+}
+
+/* --- Master Toggle Style --- */
+.master-toggle-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  padding: 10px;
+  background-color: #e7f3ff;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+/* --- Hide Print Header on Screen --- */
+.print-header {
+  display: none;
+}
+
+/* --- Date Display Style for Screen View --- */
+.bill-date {
+  text-align: right;
+  font-size: 1.4em;
+  font-weight: bolder;
+  color: #343a40;
+  margin-bottom: 20px;
+}
+
+/* --- Hide the print-only details on the SCREEN view --- */
+.print-only-details {
+  display: none;
+}
+
+/* --- Input Form Table Styling --- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table td {
+  padding: 16px 10px;
+  border: none;
+  border-bottom: 1px solid #e9ecef;
+  vertical-align: middle;
+}
+
+table td:first-child {
+  font-weight: 600;
+  color: #005a9e;
+  width: 120px;
+}
+
+/* Input Field Styling */
+input[type="number"],
+input[type="text"],
+input[type="date"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #495057;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus,
+input[type="date"]:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+  outline: none;
+}
+
+/* --- REFINED 4-BOX LAYOUT STYLES --- */
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.detail-item {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid #e9ecef;
+}
+
+.detail-label {
+  font-size: 19px;
+  color: #6c757d;
+  margin: auto;
+  display: block;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+.detail-label-enter {
+  font-size: 1.7em;
+  color: #6c757d;
+  margin: auto;
+  display: block;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.detail-value {
+  font-size: 2.7em;
+  font-weight: 500;
+  color: #005a9e;
+  line-height: 1.1;
+}
+
+.summary-item {
+  background: linear-gradient(135deg, #e7f3ff, #d0e7ff);
+  border: 1px solid #b3d7ff;
+}
+.summary-item .detail-value {
+  font-size: 2.3em;
+}
+
+/* --- Final Bill Items Table --- */
+.final-bill-table {
+  text-align: center;
+}
+
+.final-bill-table th {
+  background-color: #f8f9fa;
+  color: #005a9e;
+  font-weight: 600;
+  padding: 1px 10px;
+  margin: auto;
+  border-bottom: 2px solid #dee2e6;
+  font-size: 1.1em;
+}
+
+.final-bill-table td {
+  font-weight: 500;
+  color: #495057;
+  font-size: 1.2em;
+  padding: 8px 10px;
+  vertical-align: middle;
+}
+
+.final-bill-table td:first-child {
+  text-align: left;
+  color: #005a9e;
+  font-weight: bold;
+}
+
+.final-bill-table {
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+/* --- CORRECTED Box Layout for Totals --- */
+.totals-grid {
+  display: grid;
+  /* This makes it flexible, just like the top boxes */
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+.final-total-box {
+  background: #005a9e;
+  border-color: #004a82;
+}
+.final-total-box .detail-label,
+.final-total-box .detail-value {
+  color: white;
+}
+.match-status {
+  text-align: center;
+  font-weight: bold;
+  padding: 10px;
+  margin-top: 15px;
+}
+
+/* --- New Expense Section Styles --- */
+.expense-section {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 2px solid #e9ecef;
+}
+.expense-section h3 {
+  color: #005a9e;
+  margin-bottom: 15px;
+}
+.expense-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.expense-row input[type="text"] {
+  flex: 2;
+}
+.expense-row input[type="number"] {
+  flex: 1;
+}
+.remove-expense-btn,
+.add-expense-btn {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+    "Helvetica Neue", sans-serif;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+.remove-expense-btn {
+  background-color: #dc3545;
+  color: white;
+}
+.add-expense-btn {
+  background-color: #28a745;
+  color: white;
+  margin-top: 10px;
+}
+
+/* --- Button Styles --- */
+button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #007bff, #005a9e);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 30px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #e9ecef;
+}
+
+.button-container .button {
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 12px;
+  background: #007bff;
+  border-radius: 8px;
+  color: white;
+}
+
+.button-container .back-button {
+  background: #6c757d;
+}
+
+.print-copy {
+  display: none;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+  .container {
+    padding: 20px;
+  }
+  h1 {
+    font-size: 1.5em;
+  }
+  .logo {
+    height: 40px;
+  }
+  .details-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* --- PRINT STYLES --- */
+@media print {
+  @page {
+    size: A4;
+    margin: 0.5cm;
+  }
+  body {
+    background-color: #ffffff;
+    font-family: serif;
+    font-size: 8pt;
+    color: #000000;
+    margin: 0;
+    padding: 0;
+  }
+  .button-container,
+  .match-status,
+  .logo,
+  .header,
+  .master-toggle-container,
+  .print-hide {
+    display: none;
+  }
+  .container {
+    width: 100%;
+    height: 48%;
+    box-shadow: none;
+    border: 1px solid #aaa;
+    padding: 0.4cm;
+    margin: 0 0 2% 0;
+    page-break-inside: avoid;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  .print-copy {
+    display: block !important;
+    margin: 0;
+  }
+  .container::before {
+    display: none;
+  }
+  .detail-value,
+  .detail-label,
+  h1,
+  .final-bill-table td,
+  .final-bill-table th,
+  .bill-label,
+  .bill-value {
+    color: #000000 !important;
+  }
+  .print-header {
+    display: block;
+    text-align: center;
+    margin-bottom: 1px;
+    padding-bottom: 1px;
+    border-bottom: 1px solid #ccc;
+    font-size: 6pt;
+  }
+
+  .bill-date {
+    position: absolute;
+    top: 10px;
+    right: 7.5%;
+    font-size: 20pt;
+    font-weight: bolder;
+    margin: 0;
+  }
+
+  .bill-name {
+    font-size: 15pt;
+    font-weight: bold;
+    margin: auto;
+  }
+  .bill-num {
+    font-size: 10pt;
+    font-weight: bold;
+    margin: auto;
+  }
+
+  .print-only-details {
+    display: block !important;
+    margin: 5px 0;
+  }
+  .detail-line {
+    display: flex;
+    align-items: center;
+    font-size: 9pt;
+  }
+  .detail-line .detail-label {
+    font-weight: bold;
+    margin: 0 8px;
+    display: inline-block;
+    font-size: 9pt;
+  }
+  .detail-value-line {
+    flex-grow: 1;
+    border-bottom: 1px solid #000;
+    height: 1.2em;
+  }
+
+  #container-original::after {
+    content: "Original";
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    border: 1px solid #000;
+    padding: 2px 4px;
+    font-size: 7pt;
+    font-weight: bold;
+  }
+  #container-copy::after {
+    content: "Duplicate";
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    border: 1px solid #000;
+    padding: 2px 4px;
+    font-size: 7pt;
+    font-weight: bold;
+  }
+
+  .details-grid,
+  .totals-grid {
+    gap: 5px;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+  }
+  .detail-item,
+  .summary-item,
+  .final-total-box {
+    background: transparent !important;
+    border: 1px solid #ccc;
+    padding: 4px;
+  }
+
+  .final-bill-table th {
+    padding: 0 10px;
+    font-size: 15pt;
+  }
+  .final-bill-table td {
+    padding: 1px 10px;
+    font-size: 15pt;
+  }
+}
+
+/* --- STYLES FOR TOGGLE SWITCHES --- */
+.checkbox-cell {
+  text-align: center;
+}
+.toggle-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.toggle-cell-container {
+  text-align: center;
+  vertical-align: middle;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+input:checked + .slider {
+  background-color: #007bff;
+}
+input:focus + .slider {
+  box-shadow: 0 0 1px #007bff;
+}
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Add this new block to your html.css file */
+.print-mode .print-only-details {
+  display: block !important;
+  margin: 5px 0;
+}
+.print-mode .print-header {
+  display: block;
+  text-align: center;
+  margin-bottom: 1px;
+  padding-bottom: 1px;
+  border-bottom: 1px solid #ccc;
+  font-size: 15pt;
+}
+.print-mode .detail-line {
+  display: flex;
+  align-items: center;
+  font-weight: bolder;
+  color: #343a40;
+  font-size: 12pt;
+}
+.print-mode .detail-line .detail-label {
+  font-weight: bold;
+  margin: 0 8px;
+  display: inline-block;
+  font-size: 9pt;
+}
+.print-mode .detail-value-line {
+  flex-grow: 1;
+  border-bottom: 1px solid #000;
+  height: 1.2em;
+  overflow: hidden; /* Prevent text overflow */
+  white-space: nowrap; /* Keep text on one line */
+}
+.print-mode .header {
+  display: none;
+}
+.print-mode .bill-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e9ecef;
+}
+.print-mode .bill-meta .meta-item {
+  font-size: 18pt;
+  font-weight: bold;
+}
+
+.print-mode .detail-value-line {
+  flex-grow: 1;
+  border-bottom: 1px solid #000;
+  height: 1.2em;
+  margin: 0 0 0 5px;
+  font-size: 18pt;
+}
