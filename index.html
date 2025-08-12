@@ -15,59 +15,6 @@
 
     <script src="bill.js"></script>
     <link rel="stylesheet" href="html.css" />
-    <style>
-      /* Simple styles for the bill list view */
-      #bill_list_view {
-        margin-top: 30px;
-        padding-top: 20px;
-        border-top: 2px solid #e9ecef;
-      }
-      .bill-list-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 15px;
-      }
-      .bill-list-table th,
-      .bill-list-table td {
-        border: 1px solid #dee2e6;
-        padding: 8px 12px;
-        text-align: left;
-      }
-      .bill-list-table th {
-        background-color: #f8f9fa;
-        font-weight: 600;
-      }
-      .action-buttons button {
-        margin-right: 5px;
-        padding: 5px 10px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-      .view-btn {
-        background-color: #007bff;
-        color: white;
-      }
-      .delete-btn {
-        background-color: #dc3545;
-        color: white;
-      }
-      /* NEW: Styles for export section */
-      .export-section {
-        margin-top: 15px;
-        padding: 15px;
-        background-color: #f8f9fa;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        gap: 15px;
-      }
-      .export-section select {
-        padding: 8px;
-        border-radius: 5px;
-        border: 1px solid #ced4da;
-      }
-    </style>
   </head>
   <body>
     <div class="container">
@@ -81,7 +28,7 @@
         <form id="estimateForm">
           <!-- Customer Details Section -->
           <div class="customer-details-section">
-            <h3>Customer Details</h3>
+            <center><h3>Customer Details</h3></center>
             <table>
               <tbody>
                 <tr>
@@ -216,7 +163,7 @@
 
       <!-- View for listing all saved bills -->
       <div id="bill_list_view" style="display: none">
-        <h2>Saved Bills</h2>
+        <center><h2>Saved Bills</h2></center>
         <button onclick="showBillCreationForm()" class="button back-button" style="margin-bottom: 15px">
           Create New Bill
         </button>

@@ -574,8 +574,19 @@ input:focus + .slider {
 input:checked + .slider:before {
   transform: translateX(26px);
 }
-
-/* Add this new block to your html.css file */
+.edit-btn {
+  background-color: #ffc107;
+  color: white;
+  margin-right: 5px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.bill-meta .meta-item {
+  font-size: 1.5em;
+  font-weight: bold;
+}
 .print-mode .print-only-details {
   display: block !important;
   margin: 5px 0;
@@ -586,14 +597,12 @@ input:checked + .slider:before {
   margin-bottom: 1px;
   padding-bottom: 1px;
   border-bottom: 1px solid #ccc;
-  font-size: 15pt;
+  font-size: 6pt;
 }
 .print-mode .detail-line {
   display: flex;
   align-items: center;
-  font-weight: bolder;
-  color: #343a40;
-  font-size: 12pt;
+  font-size: 9pt;
 }
 .print-mode .detail-line .detail-label {
   font-weight: bold;
@@ -605,8 +614,8 @@ input:checked + .slider:before {
   flex-grow: 1;
   border-bottom: 1px solid #000;
   height: 1.2em;
-  overflow: hidden; /* Prevent text overflow */
-  white-space: nowrap; /* Keep text on one line */
+  overflow: hidden;
+  white-space: nowrap;
 }
 .print-mode .header {
   display: none;
@@ -620,14 +629,108 @@ input:checked + .slider:before {
   border-bottom: 1px solid #e9ecef;
 }
 .print-mode .bill-meta .meta-item {
-  font-size: 18pt;
+  font-size: 1.5em;
   font-weight: bold;
 }
-
 .print-mode .detail-value-line {
   flex-grow: 1;
   border-bottom: 1px solid #000;
   height: 1.2em;
   margin: 0 0 0 5px;
   font-size: 18pt;
+}
+/* Styling for the Saved Bills list view */
+#bill_list_view {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 2px solid #e9ecef;
+}
+
+/* Updated Table Styling */
+.bill-list-table {
+  width: 100%;
+  border-collapse: separate; /* Use separate to add spacing between cells */
+  border-spacing: 0 8px; /* Vertical spacing between rows */
+  margin-top: 15px;
+}
+.bill-list-table th,
+.bill-list-table td {
+  border: none; /* Remove default borders */
+  background-color: #f8f9fa; /* Light background for cells */
+  padding: 12px 18px; /* Increased padding */
+  text-align: left;
+}
+.bill-list-table th {
+  background-color: #e9ecef;
+  font-weight: 600;
+  color: #343a40;
+  text-transform: uppercase;
+}
+.bill-list-table tbody tr {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Subtle shadow for rows */
+  border-radius: 8px;
+}
+.bill-list-table tbody tr:hover {
+  background-color: #f1f3f5; /* Light hover effect */
+}
+
+/* Actions Column Styling */
+.action-buttons {
+  display: flex;
+  gap: 8px; /* Space between the buttons */
+  align-items: center;
+  justify-content: center;
+}
+.action-buttons button {
+  padding: 20px 16px; /* Uniform button padding */
+  border: none;
+  border-radius: 10px; /* Rounded corners */
+  cursor: pointer;
+  font-weight: bolder;
+  transition: background-color 0.3s ease;
+}
+
+/* Button Colors and Hover Effects */
+.view-btn {
+  background-color: #007bff;
+  color: white;
+}
+.view-btn:hover {
+  background-color: #0056b3;
+}
+.edit-btn {
+  background-color: #ffc107;
+  color: white;
+}
+.edit-btn:hover {
+  background-color: #e0a800;
+}
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+.delete-btn:hover {
+  background-color: #c82333;
+}
+
+/* Sync Status and Create New Bill Button */
+#sync_status {
+  font-size: 14px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-left: auto; /* Push to the right */
+}
+.create-new-bill-btn {
+  background: #28a745;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
+}
+.create-new-bill-btn:hover {
+  background: #218838;
 }
