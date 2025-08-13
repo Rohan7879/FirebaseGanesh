@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function initializeIndexPage() {
   addExpense();
+
   const toggle = document.getElementById("loose_supply_toggle");
   if (toggle) {
     toggle.addEventListener("change", function (event) {
@@ -66,7 +67,15 @@ function initializeIndexPage() {
     localStorage.removeItem("editBillData");
   }
 }
+// Add this new function to your bill.js file
 
+function showKasarInput() {
+  // This hides the default text and the "Change" button
+  document.getElementById("kasar_display").style.display = "none";
+
+  // This shows the hidden input field
+  document.getElementById("kasar_input").style.display = "block";
+}
 function populateFormForEdit(data) {
   const form = document.getElementById("estimateForm");
   form.dataset.editId = data.id;
@@ -162,7 +171,13 @@ function collectData() {
     data["Bill Type"] = "Loose";
     const weight = Number(formData.get("weighbridge_weight")) || 0;
     const price = Number(formData.get("loose_price")) || 0;
-    const katta_kasar = customRound(weight * 0.003);
+
+    // Inside the "if (isLooseSupply)" block
+    const kasar_percent = Number(formData.get("kasar_percentage")) || 0.3;
+    const katta_kasar = customRound(weight * (kasar_percent / 100));
+
+    // ADD THIS LINE HERE
+    data["Kasar Percentage"] = kasar_percent;
     net_vajan = customRound(weight - katta_kasar);
     total = customRound((net_vajan / 20) * price);
 
@@ -214,7 +229,9 @@ function collectData() {
     let bardanWeightKantan = deductKantan ? customRound((bharela_600 + khali_600) * 0.6) : 0;
     let bardanWeightPlastic = deductPlastic ? customRound((bharela_200 + khali_200) * 0.2) : 0;
     let Bardan = bardanWeightKantan + bardanWeightPlastic;
-    let katta_kasar = customRound(weighbridge_weight * 0.003);
+    const kasar_percent = Number(formData.get("kasar_percentage")) || 0.3;
+    let katta_kasar = customRound(weighbridge_weight * (kasar_percent / 100));
+    data["Kasar Percentage"] = kasar_percent;
     net_vajan = customRound(weighbridge_weight - katta_kasar - Bardan);
 
     data["Weighbridge Weight"] = weighbridge_weight;
@@ -252,7 +269,8 @@ function collectData() {
     }
   }
 
-  if (deductUtrai) {
+  // Only calculate Utrāī if the bill total is greater than zero
+  if (deductUtrai && total > 0) {
     let utrai_base = customRound((net_vajan / 100) * 7);
     let diff = (total % 10) - (utrai_base % 10);
     if (diff > 5) finalutrai = utrai_base + diff - 10;
@@ -382,7 +400,11 @@ async function updateData(docId) {
     let bardanWeightKantan = deductKantan ? customRound((bharela_600 + khali_600) * 0.6) : 0;
     let bardanWeightPlastic = deductPlastic ? customRound((bharela_200 + khali_200) * 0.2) : 0;
     let Bardan = bardanWeightKantan + bardanWeightPlastic;
-    let katta_kasar = customRound(weighbridge_weight * 0.003);
+    const kasar_percent = Number(formData.get("kasar_percentage")) || 0.3;
+    let katta_kasar = customRound(weighbridge_weight * (kasar_percent / 100));
+
+    // ADD THIS LINE to save the percentage for the next page
+    data["Kasar Percentage"] = kasar_percent;
     net_vajan = customRound(weighbridge_weight - katta_kasar - Bardan);
 
     data["Weighbridge Weight"] = weighbridge_weight;
@@ -648,6 +670,8 @@ function displayData() {
     if (element) element.textContent = value;
   });
 
+  // Inside displayData(), after the fieldMapping section
+
   const fieldMapping = {
     display_date: "Date",
     display_weighbridge_weight: "Weighbridge Weight",
@@ -658,6 +682,12 @@ function displayData() {
     display_final_total: "Final Total",
   };
   Object.entries(fieldMapping).forEach(([id, key]) => setValue(id, data[key] !== undefined ? data[key] : ""));
+
+  // ADD THIS NEW CODE to update the Kasar % label
+  const kasarPercentElement = document.getElementById("display_kasar_percent");
+  if (kasarPercentElement && data["Kasar Percentage"]) {
+    kasarPercentElement.textContent = data["Kasar Percentage"];
+  }
 
   for (let i = 1; i <= 5; i++) {
     setValue(`display_vakal_${i}_katta`, data[`Vakal ${i} Katta`]);

@@ -65,12 +65,41 @@
 
           <table>
             <tbody>
-              <tr>
-                <td><strong>વેબ્રીજ વજન</strong></td>
-                <td colspan="4">
-                  <input type="number" name="weighbridge_weight" required />
-                </td>
-              </tr>
+              <div class="customer-details-section">
+                <center><h3>Customer Details</h3></center>
+              </div>
+
+              <div class="input-grid">
+                <div class="input-item">
+                  <label for="weighbridge_weight_input">વેબ્રીજ વજન (Weighbridge Weight)</label>
+                  <input type="number" id="weighbridge_weight_input" name="weighbridge_weight" required />
+                </div>
+
+                <div class="input-item">
+                  <label>કાંટા કસર % (Kasar %)</label>
+                  <span
+                    id="kasar_display"
+                    onclick="showKasarInput()"
+                    style="
+                      cursor: pointer;
+                      padding: 12px;
+                      border: 1px solid #ced4da;
+                      border-radius: 8px;
+                      background-color: #f8f9fa;
+                    "
+                  >
+                    0.3% (Default)
+                  </span>
+                  <input
+                    type="number"
+                    name="kasar_percentage"
+                    step="0.1"
+                    value="0.3"
+                    id="kasar_input"
+                    style="display: none"
+                  />
+                </div>
+              </div>
             </tbody>
             <tbody id="loose_supply_section" style="display: none">
               <tr>

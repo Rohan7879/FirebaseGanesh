@@ -19,23 +19,33 @@ body {
   border-radius: 16px;
   box-shadow: 0 8px 25px rgba(0, 90, 158, 0.12);
   border: 1px solid #dee2e6;
-  position: relative;
   overflow: hidden;
+  position: relative;
 }
 
-/* --- Watermark Style --- */
 .container::before {
   content: "";
-  background-image: url("IMG-20250716-WA0121.jpg");
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-image: url("secret_logo_bw.png");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 55%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0.06;
+  background-size: 100%;
+
+  /* This now controls the faintness of ONLY the watermark */
+  opacity: 0.05;
+
+  /* This keeps the watermark behind the text */
   z-index: 0;
+  /*
+   * THIS IS THE FINAL FIX:
+   * It makes the watermark layer 'unclickable',
+   * so your mouse can click the buttons underneath.
+  */
   pointer-events: none;
 }
 
@@ -379,6 +389,15 @@ button[type="submit"] {
     size: A4;
     margin: 0.5cm;
   }
+
+  /* ADD THIS NEW CODE BLOCK.
+      This will force your secret watermark to be visible.
+    */
+  .secret-logo-style {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 0.05 !important; /* This ensures it stays faint */
+  }
   body {
     background-color: #ffffff;
     font-family: serif;
@@ -406,13 +425,22 @@ button[type="submit"] {
     box-sizing: border-box;
     overflow: hidden;
   }
+
   .print-copy {
     display: block !important;
     margin: 0;
   }
   .container::before {
-    display: none;
+    /*
+    This code FORCES the watermark to be visible during printing
+    and overrides any default browser styles that try to hide it.
+  */
+    display: block !important;
+    visibility: visible !important;
+    background-image: url("secret_logo_bw.png") !important;
+    opacity: 0.04 !important;
   }
+
   .detail-value,
   .detail-label,
   h1,
@@ -638,8 +666,9 @@ input:checked + .slider:before {
   font-size: 18pt;
   font-weight: bold;
 }
+
+/* This is for print header degine */
 .bill-meta {
-  border-bottom: 1px solid rgb(193, 198, 207);
   padding-bottom: 0;
   margin-bottom: 7px; /* Adjust spacing as needed */
 }
@@ -795,4 +824,24 @@ input:checked + .slider:before {
 }
 #connection_status.checking {
   color: orange;
+}
+/* Add these new styles for the input grid section */
+.input-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Creates two equal columns */
+  gap: 15px;
+  margin: 25px 0;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.input-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-item label {
+  font-weight: 600;
+  color: #005a9e;
+  margin-bottom: 8px;
 }
